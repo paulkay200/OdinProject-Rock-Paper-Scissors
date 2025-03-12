@@ -28,22 +28,23 @@ function getComputerChoice() {
 function getHumanChoice() {
     let player;
 
-    player = prompt("Please enter your choice with the only following word: (rock, paper, scissors)");
+    while(true) {
+        player = prompt("Please enter your choice with the only following word: (rock, paper, scissors)");
 
-    if (player === null) {
-        alert("Player exits the game. Game over.");
-        console.log("Player exits the game. Game over.")
-        return null;
+        if (player === null) {
+            alert("Player exits the game. Game over.");
+            console.log("Player exits the game. Game over.")
+            return null;
+        }
+
+        player = player.toLowerCase().trim();
+
+         if (player === "rock" || player === "paper" || player === "scissors") {
+            return player;
+        } else {
+            alert(`Invalid choice. Please re-enter rock, paper, or scissors.`);
     }
-
-    player = player.toLowerCase().trim();
-
-    if (player === "rock" || player === "paper" || player === "scissors") {
-        return player;
-    } else {
-        alert(`Invalid choice. Please re-enter rock, paper, or scissors.`);
-    }
-
+  }
 }
 
 
@@ -90,7 +91,7 @@ function playGame(roundNumber) {
         return false;
     }
 
-    const computer = getHumanChoice();
+    const computer = getComputerChoice();
 
     const roundResult = playRound(human, computer);
     alert(roundResult);
