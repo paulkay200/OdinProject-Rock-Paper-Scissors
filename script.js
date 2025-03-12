@@ -78,13 +78,13 @@ function playRound(humanChoice, computerChoice) {
 // Write a function for single round game
 
 // 1. Both players start with single round game.
-// 2. If human player exits the game, the whole game will stop immediately, not only single round of the game.
-// 3. If human player participles single round of the game, the rest of 4 rounds of the game will continue.
+
 
 function playGame(roundNumber) {
 
     console.group();
-    console.log(`round: ${roundNumber};`)
+    console.log(`round: ${roundNumber};`);
+
     const human = getHumanChoice();
 
     if (human === null) {
@@ -104,6 +104,55 @@ function playGame(roundNumber) {
 
     return true;
 }
+
+// Write a function to play the entire game
+
+// 1. If human player exits the game, the whole game will stop immediately, not only single round of the game.
+// 2. If human player participles single round of the game, the rest of 4 rounds of the game will continue.
+
+function startGame() {
+  
+    let gameContinues = true;
+  
+    gameContinues = gameContinues && playGame(1);
+    if (!gameContinues) {
+      return false;
+    }
+  
+    gameContinues = gameContinues && playGame(2);
+    if (!gameContinues) {
+      return false;
+    }
+  
+    gameContinues = gameContinues && playGame(3);
+    if (!gameContinues) {
+      return false;
+    }
+  
+    gameContinues = gameContinues && playGame(4);
+    if (!gameContinues) {
+      return false;
+    }
+  
+    gameContinues = gameContinues && playGame(5); 
+    if (!gameContinues) {
+      return false;
+    }
+  
+    alert(`Final result - Player score: ${humanScore}. Computer score: ${computerScore}.`)
+
+    if (humanScore === computerScore) {
+        alert(`The whole game is a tie! Ready for re-match?`);
+      } else if (humanScore > computerScore) {
+        alert(`Player wins the game.`);
+        console.log(`Player wins the game.`);
+      } else {
+        alert(`Player loses the game.`);
+        console.log(`Player loses the game.`);
+      }
+}
+  
+startGame();
 
 
 
