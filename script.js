@@ -1,8 +1,8 @@
 // The Odin Project - Rock, Paper, Scissors
 
 
-// Set up the function to get the Choice of computer player
-// 1. Tell how computer player choose a choice between rock, paper, and scissors.
+// Set up the function to get the Choice of computer
+// 1. Tell how computer choose a choice between rock, paper, and scissors.
 
 // 2. Use Math.floor and Math.random to generate a number between 1 to 3.  (1 to `rock`, 2 to `paper`, 3 to `scissors`)
 function getComputerChoice() {
@@ -18,14 +18,14 @@ function getComputerChoice() {
 }
 
 
-// Set up the function to get the Choice of human player
+// Set up the function to get the Choice of player
 // 1. Set up the popped up prompt to choose a choice between rock, paper, and scissors
 
-// 2. If human player exits the game, the game will stop immediately no matter how many rounds they are playing.
+// 2. If player exits the game, the game will stop immediately no matter how many rounds of game they are playing.
 
-// 3. Prompt will keep repeating over again and remind human player to re-enter their choice if they don't enter correct choices.
+// 3. Player's prompt will keep repeating over again and remind player to re-enter their choice if they don't enter correct choices.
 
-function getHumanChoice() {
+function getPlayerChoice() {
     let player;
 
     while(true) {
@@ -48,57 +48,60 @@ function getHumanChoice() {
 }
 
 
-// Declare human player and computer player score variable
-let humanScore = 0;
+// Declare player and computer score variable
+let playerScore = 0;
 let computerScore = 0;
 
 
-// Write a function to play a single round
+// Write a function to play a single round of play
 
-// 1. Declare human player and computer player choices. Whoever wins 1 round, increment 1 point.
+// 1. Declare player and computer rock, paper, scissors choices.
 
-function playRound(humanChoice, computerChoice) {
+// 2. When player or computer wins, increment 1 point.
 
-    if (humanChoice === computerChoice) {
-         return (`Player choice - [${humanChoice}]. Computer choice - [${computerChoice}].\n\nIt's a tie!`);     
+function playRound(playerChoice, computerChoice) {
+
+    if (playerChoice === computerChoice) {
+         return (`Player choice - [${playerChoice}]. Computer choice - [${playerChoice}].\n\nIt's a tie!`);     
     } else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
       ) {
-         humanScore++;
-         return `Player choice - [${humanChoice}].\nComputer choice - [${computerChoice}].\n\nPlayer wins! ${humanChoice} beats ${computerChoice}.`;
+         playerScore++;
+         return `Player choice - [${playerChoice}].\nComputer choice - [${playerChoice}].\n\nPlayer wins! ${playerChoice} beats ${computerChoice}.`;
     } else {
          computerScore++;
-         return `Player choice - [${humanChoice}].\nComputer choice - [${computerChoice}].\n\nPlayer loses! ${computerChoice} beats ${humanChoice}.`;
+         return `Player choice - [${playerChoice}].\nComputer choice - [${playerChoice}].\n\nPlayer loses! ${computerChoice} beats ${playerChoice}.`;
     }
 }
 
 
 // Write a function for single round game
 
-// 1. Both players start with single round game.
+// 1. Both players start with single round of play.
 
+// 2. Both player will print out the result of single round of play once they select their choice.
 
 function playGame(roundNumber) {
 
     console.group();
     console.log(`round: ${roundNumber};`);
 
-    const human = getHumanChoice();
+    const player = getPlayerChoice();
 
-    if (human === null) {
+    if (player === null) {
         return false;
     }
 
     const computer = getComputerChoice();
 
-    const roundResult = playRound(human, computer);
+    const roundResult = playRound(player, computer);
     alert(roundResult);
     console.log(roundResult);
 
-    alert(`Round ${roundNumber} result - Player score: ${humanScore}. Computer score: ${computerScore}.`);
-    console.log(`Round ${roundNumber} result - Player score: ${humanScore}. Computer score: ${computerScore}.`);
+    alert(`Round ${roundNumber} result - Player score: ${playerScore}. Computer score: ${computerScore}.`);
+    console.log(`Round ${roundNumber} result - Player score: ${playerScore}. Computer score: ${computerScore}.`);
 
     console.groupEnd();
 
@@ -107,8 +110,11 @@ function playGame(roundNumber) {
 
 // Write a function to play the entire game
 
-// 1. If human player exits the game, the whole game will stop immediately, not only single round of the game.
-// 2. If human player participles single round of the game, the rest of 4 rounds of the game will continue.
+// 1. If player exits the game, the whole game will stop immediately, not only single round of the game.
+
+// 2. If player participles single round of the game, the rest of 4 rounds of the game will continue until 5 rounds.
+
+// 3. After 5 rounds of play, the final score and the winner will be displayed.
 
 function startGame() {
   
@@ -139,11 +145,11 @@ function startGame() {
       return false;
     }
   
-    alert(`Final result - Player score: ${humanScore}. Computer score: ${computerScore}.`)
+    alert(`Final result - Player score: ${playerScore}. Computer score: ${computerScore}.`)
 
-    if (humanScore === computerScore) {
+    if (playerScore === computerScore) {
         alert(`The whole game is a tie! Ready for re-match?`);
-      } else if (humanScore > computerScore) {
+      } else if (playerScore > computerScore) {
         alert(`Player wins the game.`);
         console.log(`Player wins the game.`);
       } else {
