@@ -1,7 +1,7 @@
 // The Odin Project - Rock, Paper, Scissors
 
 
-// Set up the logic to get the Choice of computer player
+// Set up the function to get the Choice of computer player
 // 1. Tell how computer player choose a choice between rock, paper, and scissors.
 
 // 2. Use Math.floor and Math.random to generate a number between 1 to 3.  (1 to `rock`, 2 to `paper`, 3 to `scissors`)
@@ -18,7 +18,7 @@ function getComputerChoice() {
 }
 
 
-// Set up the logic to get the Choice of human player
+// Set up the function to get the Choice of human player
 // 1. Set up the popped up prompt to choose a choice between rock, paper, and scissors
 
 // 2. If human player exits the game, the game will stop immediately no matter how many rounds they are playing.
@@ -47,3 +47,32 @@ function getHumanChoice() {
 }
 
 
+// Declare human player score variable
+let humanScore = 0;
+let computerScore = 0;
+
+
+// Write a function to play a single round
+// 1. Declare human player and computer player choices. Whoever wins 1 round, increment 1 point.
+
+function playRound(humanChoice, computerChoice) {
+
+    if (humanChoice === computerChoice) {
+         return (`Player choice - [${humanChoice}]. Computer choice - [${computerChoice}].\n\nIt's a tie!`);     
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+      ) {
+         humanScore++;
+         return `Player choice - [${humanChoice}].\nComputer choice - [${computerChoice}].\n\nPlayer wins! ${humanChoice} beats ${computerChoice}.`;
+    } else {
+         computerScore++;
+         return `Player choice - [${humanChoice}].\nComputer choice - [${computerChoice}].\n\nPlayer loses! ${computerChoice} beats ${humanChoice}.`;
+    }
+}
+
+
+// 
+
+ 
