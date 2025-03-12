@@ -47,12 +47,13 @@ function getHumanChoice() {
 }
 
 
-// Declare human player score variable
+// Declare human player and computer player score variable
 let humanScore = 0;
 let computerScore = 0;
 
 
 // Write a function to play a single round
+
 // 1. Declare human player and computer player choices. Whoever wins 1 round, increment 1 point.
 
 function playRound(humanChoice, computerChoice) {
@@ -73,6 +74,35 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-// 
+// Write a function for single round game
 
- 
+// 1. Both players start with single round game.
+// 2. If human player exits the game, the whole game will stop immediately, not only single round of the game.
+// 3. If human player participles single round of the game, the rest of 4 rounds of the game will continue.
+
+function playGame(roundNumber) {
+
+    console.group();
+    console.log(`round: ${roundNumber};`)
+    const human = getHumanChoice();
+
+    if (human === null) {
+        return false;
+    }
+
+    const computer = getHumanChoice();
+
+    const roundResult = playRound(human, computer);
+    alert(roundResult);
+    console.log(roundResult);
+
+    alert(`Round ${roundNumber} result - Player score: ${humanScore}. Computer score: ${computerScore}.`);
+    console.log(`Round ${roundNumber} result - Player score: ${humanScore}. Computer score: ${computerScore}.`);
+
+    console.groupEnd();
+
+    return true;
+}
+
+
+
