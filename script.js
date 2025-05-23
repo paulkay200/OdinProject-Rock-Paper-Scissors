@@ -18,36 +18,6 @@ function getComputerChoice() {
 }
 
 
-// Set up the function to get the Choice of player
-// 1. Set up the popped up prompt to choose a choice between rock, paper, and scissors
-
-// 2. If player exits the game, the game will stop immediately no matter how many rounds of game they are playing.
-
-// 3. Player's prompt will keep repeating over again and remind player to re-enter their choice if they don't enter correct choices.
-
-function getPlayerChoice() {
-    let player;
-
-    while(true) {
-        player = prompt("Please enter your choice with the only following word: (rock, paper, scissors)");
-
-        if (player === null) {
-            alert("Player exits the game. Game over.");
-            console.log("Player exits the game. Game over.")
-            return null;
-        }
-
-        player = player.toLowerCase().trim();
-
-         if (player === "rock" || player === "paper" || player === "scissors") {
-            return player;
-        } else {
-            alert(`Invalid choice. Please re-enter rock, paper, or scissors.`);
-    }
-  }
-}
-
-
 // Declare player and computer score variable
 let playerScore = 0;
 let computerScore = 0;
@@ -74,6 +44,42 @@ function playRound(playerChoice, computerChoice) {
          computerScore++;
          return `Player choice - [${playerChoice}].\nComputer choice - [${playerChoice}].\n\nPlayer loses! ${computerChoice} beats ${playerChoice}.`;
     }
+}
+
+
+// Set up the function to get the Choice of player and computer, current round's game result, final round's game result
+
+let currentRound = 1;
+let totalRounds = 5;
+
+function handleHumanChoice(playerChoice) {
+
+  console.group();
+
+  const roundResult = playRound(playerChoice, getComputerChoice());
+
+  gameMessage.textContent = `${roundResult}`;
+  console.log(roundResult);
+    
+  currentRoundResult.textContent = (`Round ${currentRound} result - Player score: ${playerScore}. Computer score: ${computerScore}.`);
+  console.log(`Round ${currentRound} result - Player score: ${playerScore}. Computer score: ${computerScore}.`);
+
+  currentRound++;
+
+  console.groupEnd();
+
+  if (currentRound > totalRounds) {
+    if (playerScore === computerScore) {  
+      finalGameResult.textContent = (`Game over. The whole game is a tie! Ready for re-match?`);
+      console.log(`Game over. The whole game is a tie! Ready for re-match?`)
+      } else if (playerScore > computerScore) {  
+      finalGameResult.textContent = (`Game over. Player wins the game.`);
+      console.log(`Game over. Player wins the game.`);
+      } else {
+      finalGameResult.textContent = (`Game over. Player loses the game.`); 
+      console.log(`Game over. Player loses the game.`);
+    } 
+  }
 }
 
 
