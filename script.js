@@ -32,25 +32,34 @@ let computerScore = 0;
 function playRound(playerChoice, computerChoice) {
 
     if (playerChoice === computerChoice) {
-         return (`Player choice - [${playerChoice}]. Computer choice - [${playerChoice}].\n\nIt's a tie!`);     
+         return (`Player choice - [${playerChoice}]. Computer choice - [${computerChoice}].\n\nIt's a tie!`);     
     } else if (
         (playerChoice === "rock" && computerChoice === "scissors") ||
         (playerChoice === "paper" && computerChoice === "rock") ||
         (playerChoice === "scissors" && computerChoice === "paper")
       ) {
          playerScore++;
-         return `Player choice - [${playerChoice}].\nComputer choice - [${playerChoice}].\n\nPlayer wins! ${playerChoice} beats ${computerChoice}.`;
+         return `Player choice - [${playerChoice}].\nComputer choice - [${computerChoice}].\n\nPlayer wins! ${playerChoice} beats ${computerChoice}.`;
     } else {
          computerScore++;
-         return `Player choice - [${playerChoice}].\nComputer choice - [${playerChoice}].\n\nPlayer loses! ${computerChoice} beats ${playerChoice}.`;
+         return `Player choice - [${playerChoice}].\nComputer choice - [${computerChoice}].\n\nPlayer loses! ${computerChoice} beats ${playerChoice}.`;
     }
 }
 
 
 // Set up the function to get the Choice of player and computer, current round's game result, final round's game result
 
+// 1. Both players start with single round of play.
+
+// 2. Both player will print out the result of single round of play once they select their choice.
+
+// 3. The message of final round's game result will be showed when it's game over.
+
 let currentRound = 1;
 let totalRounds = 5;
+
+let currentRoundResult = document.querySelector(".current-round-result");
+let finalGameResult = document.querySelector(".final-game-result");
 
 function handleHumanChoice(playerChoice) {
 
@@ -82,89 +91,5 @@ function handleHumanChoice(playerChoice) {
   }
 }
 
-
-// Write a function for single round game
-
-// 1. Both players start with single round of play.
-
-// 2. Both player will print out the result of single round of play once they select their choice.
-
-function playGame(roundNumber) {
-
-    console.group();
-    console.log(`round: ${roundNumber};`);
-
-    const player = getPlayerChoice();
-
-    if (player === null) {
-        return false;
-    }
-
-    const computer = getComputerChoice();
-
-    const roundResult = playRound(player, computer);
-    alert(roundResult);
-    console.log(roundResult);
-
-    alert(`Round ${roundNumber} result - Player score: ${playerScore}. Computer score: ${computerScore}.`);
-    console.log(`Round ${roundNumber} result - Player score: ${playerScore}. Computer score: ${computerScore}.`);
-
-    console.groupEnd();
-
-    return true;
-}
-
-// Write a function to play the entire game
-
-// 1. If player exits the game, the whole game will stop immediately, not only single round of the game.
-
-// 2. If player participles single round of the game, the rest of 4 rounds of the game will continue until 5 rounds.
-
-// 3. After 5 rounds of play, the final score and the winner will be displayed.
-
-function startGame() {
-  
-    let gameContinues = true;
-  
-    gameContinues = gameContinues && playGame(1);
-    if (!gameContinues) {
-      return false;
-    }
-  
-    gameContinues = gameContinues && playGame(2);
-    if (!gameContinues) {
-      return false;
-    }
-  
-    gameContinues = gameContinues && playGame(3);
-    if (!gameContinues) {
-      return false;
-    }
-  
-    gameContinues = gameContinues && playGame(4);
-    if (!gameContinues) {
-      return false;
-    }
-  
-    gameContinues = gameContinues && playGame(5); 
-    if (!gameContinues) {
-      return false;
-    }
-  
-    alert(`Final result - Player score: ${playerScore}. Computer score: ${computerScore}.`)
-
-    if (playerScore === computerScore) {
-        alert(`The whole game is a tie! Ready for re-match?`);
-      } else if (playerScore > computerScore) {
-        alert(`Player wins the game.`);
-        console.log(`Player wins the game.`);
-      } else {
-        alert(`Player loses the game.`);
-        console.log(`Player loses the game.`);
-      }
-}
-  
-startGame();
-
-
+let gameMessage = document.querySelector(".game-message");
 
