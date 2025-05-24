@@ -91,6 +91,13 @@ function handleHumanChoice(playerChoice) {
   }
 }
 
+
+// Add a event listener for four buttons - rock, paper, scissors, reset
+
+// 1. When the game is over (5 rounds), rock, paper, and scissors' buttons are all disabled, except reset button.
+
+// 2. Simply click reset button to restart the game at any time.
+
 let gameMessage = document.querySelector(".game-message");
 
 const rock = document.querySelector(".rock");
