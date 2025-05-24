@@ -10,6 +10,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>The Odin Project: JavaScript Tutorial</title>
     <script src="script.js" defer></script>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,6 +41,7 @@
         <li>You will play 5 rounds against the computer. The player with the most wins will be the winner! Enjoy!</li><br>
     </ol>
 
+    <div class="btn">
     <button class="rock">
         <img src="rock.jpg" width="150" height="150"></img>
     </button>
@@ -44,7 +55,8 @@
 
     <button class="reset-game">
         <img src="reset.jpg" width="250" height="150"></img>
-    </button><br><br>
+    </button>
+    </div><br><br>
 
     <div class="game-message"></div><br>
     <div class="current-round-result"></div><br>
